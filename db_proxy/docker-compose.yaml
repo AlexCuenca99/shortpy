@@ -1,0 +1,22 @@
+services:
+  mysql-shortpy:
+    image: mysql:8
+    restart: always
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=${MYSQL_DATABASE}"
+      - "MYSQL_USER=${MYSQL_USER}"
+      - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+    ports:
+      - "0.0.0.0:${STAGE_SQL_PORT}:3306"
+    networks:
+      backend:
+        aliases:
+          - ${SQL_HOST_NETWORK_ALIAS} # This will be the Database host address
+
+networks:
+  backend:
+    external: true
+    name: ${DOCKER_EXTERNAL_NETWORK_NAME} # This will be the name of the network under the services of the app will work and communicate

@@ -1,0 +1,32 @@
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./:/usr/src/app/
+    command: sh -c "exec gunicorn --bind :5000 --workers 1 --timeout 500 src.flask_gunicorn_process_handler:app --reload"
+    ports:
+      - "5001:5000"
+    depends_on:
+      - redis
+    deploy:
+      resources:
+        limits:
+          memory: $DOCKER_LIMITS_MEMORY
+          cpus: $DOCKER_LIMITS_CPUS
+    networks:
+      backend:
+        aliases:
+          - meli-cache
+  redis:
+    image: redis:6.2-alpine
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true
+    name: enviame-new-york
