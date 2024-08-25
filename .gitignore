@@ -1,6 +1,9 @@
 # VsCode
 .vscode/*
 
+# Local Database
+db_proxy/database/*
+
 # Local History for Visual Studio Code
 .history/
 
@@ -86,6 +89,8 @@ celerybeat-schedule
 
 # dotenv
 .env
+.env.dev
+.env.prod
 
 # virtualenv
 venv/

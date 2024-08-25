@@ -10,7 +10,7 @@ services:
       - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
       - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
     ports:
-      - "0.0.0.0:${STAGE_SQL_PORT}:3306"
+      - "0.0.0.0:${SQL_PORT}:3306"
     networks:
       backend:
         aliases:

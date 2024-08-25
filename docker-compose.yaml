@@ -29,4 +29,4 @@ services:
 networks:
   backend:
     external: true
-    name: enviame-new-york
+    name: $DOCKER_EXTERNAL_NETWORK_NAME
